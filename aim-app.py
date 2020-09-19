@@ -22,63 +22,63 @@ st.write('\n\n')
 
 if options == 'PowerBI':
 	st.markdown("""<iframe width="600" height="400" src="https://app.powerbi.com/view?r=eyJrIjoiMjUyNDQ2YTYtYWY2Yy00NWU0LWJmYTMtOGY2YjBhZjI5NTM2IiwidCI6IjZkYjU5OTA5LTYyMjYtNDQ3My05MDYxLWJhZTNjNjRiY2I4NCIsImMiOjEwfQ%3D%3D&pageName=ReportSection" frameborder="0" allowFullScreen="true"></iframe>""",unsafe_allow_html=True)
-else:
+# else:
 
-	df = pd.read_csv('titanic.csv')
+# 	df = pd.read_csv('titanic.csv')
 
-	st.write(df.head())
-	# dropping non essential columns
-	df = df.drop(['Name','PassengerId','Ticket','Cabin'],axis=1)
-	# dropping null values
-	df = df.dropna() 
-	# encoding the required columns
-	labelencoder = LabelEncoder()
-	df['Pclass'] = labelencoder.fit_transform(df['Pclass'])
-	df['Survived'] = labelencoder.fit_transform(df['Survived'])
-	df['Embarked'] = labelencoder.fit_transform(df['Embarked'])
-	df['Sex'] = labelencoder.fit_transform(df['Sex'])
+# 	st.write(df.head())
+# 	# dropping non essential columns
+# 	df = df.drop(['Name','PassengerId','Ticket','Cabin'],axis=1)
+# 	# dropping null values
+# 	df = df.dropna() 
+# 	# encoding the required columns
+# 	labelencoder = LabelEncoder()
+# 	df['Pclass'] = labelencoder.fit_transform(df['Pclass'])
+# 	df['Survived'] = labelencoder.fit_transform(df['Survived'])
+# 	df['Embarked'] = labelencoder.fit_transform(df['Embarked'])
+# 	df['Sex'] = labelencoder.fit_transform(df['Sex'])
 
-	st.sidebar.header('User Input Parameters')
-	st.sidebar.markdown('Please input the values you would like to predict for:')
+# 	st.sidebar.header('User Input Parameters')
+# 	st.sidebar.markdown('Please input the values you would like to predict for:')
 
-	def user_input_features():
-		pclass = st.sidebar.selectbox('Pclass', [0,1])
-		sex = st.sidebar.selectbox('Sex', [0,1])
-		age = st.sidebar.slider('Age', 0.42, 31.00, 80.00)
-		sibsp = st.sidebar.slider('SibSp', 0, 2, 5)
-		parch = st.sidebar.slider('Parch',0,2,6)
-		fare = st.sidebar.slider('Fare',0.0,2.0,513.0)
-		embarked = st.sidebar.slider('Embarked',0,2,3)
-		data = {'pclass': pclass, 'sex': sex,  'age': age, 'sibsp': sibsp,'parch':parch,'fare':fare,'embarked':embarked}
-		features = pd.DataFrame(data, index=[0])
-		return features
+# 	def user_input_features():
+# 		pclass = st.sidebar.selectbox('Pclass', [0,1])
+# 		sex = st.sidebar.selectbox('Sex', [0,1])
+# 		age = st.sidebar.slider('Age', 0.42, 31.00, 80.00)
+# 		sibsp = st.sidebar.slider('SibSp', 0, 2, 5)
+# 		parch = st.sidebar.slider('Parch',0,2,6)
+# 		fare = st.sidebar.slider('Fare',0.0,2.0,513.0)
+# 		embarked = st.sidebar.slider('Embarked',0,2,3)
+# 		data = {'pclass': pclass, 'sex': sex,  'age': age, 'sibsp': sibsp,'parch':parch,'fare':fare,'embarked':embarked}
+# 		features = pd.DataFrame(data, index=[0])
+# 		return features
 
-	df1 = user_input_features()
+# 	df1 = user_input_features()
 
-	# print info and description
-	st.write(df.info())
-	st.write(df.describe())
-	st.subheader('User Input parameters')
-	st.write(df1)
-	# splitting the dataset
-	y = df['Survived']
-	X = df.iloc[:,1:]
-	# split into train test sets
-	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
+# 	# print info and description
+# 	st.write(df.info())
+# 	st.write(df.describe())
+# 	st.subheader('User Input parameters')
+# 	st.write(df1)
+# 	# splitting the dataset
+# 	y = df['Survived']
+# 	X = df.iloc[:,1:]
+# 	# split into train test sets
+# 	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
 	
 
-	#loading model
-	load_clf = pickle.load(open('titanic_clf.pkl','rb'))
+# 	#loading model
+# 	load_clf = pickle.load(open('titanic_clf.pkl','rb'))
 
-	# making model and fitting
-	# log_reg = LogisticRegression()
-	# log_reg.fit(X_train,y_train)
+# 	# making model and fitting
+# 	# log_reg = LogisticRegression()
+# 	# log_reg.fit(X_train,y_train)
 	
-	prediction = load_clf.predict(df1)
-	prediction_proba = load_clf.predict_proba(df1)
+# 	prediction = load_clf.predict(df1)
+# 	prediction_proba = load_clf.predict_proba(df1)
 
-	st.subheader('Prediction Probability')
-	st.write(prediction_proba)
+# 	st.subheader('Prediction Probability')
+# 	st.write(prediction_proba)
 
 	# printing accuracy
 	# st.write(accuracy_score(y_test,prediction))
