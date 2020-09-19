@@ -4,10 +4,8 @@ import numpy as np
 from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-import random
 import pickle
-random.seed(0)
+
 
 # st.write(st.__version__)
 
