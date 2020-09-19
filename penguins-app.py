@@ -29,7 +29,7 @@ else:
 		age = st.sidebar.slider('Age', 0.42, 80.00,31.0)
 		sibsp = st.sidebar.slider('SibSp', 0, 5, 2)
 		parch = st.sidebar.slider('Parch',0,6,2)
-		fare = st.sidebar.slider('Fare',0.0,2.0,513.0)
+		fare = st.sidebar.slider('Fare',0.0,513.0,2.0)
 		embarked = st.sidebar.slider('Embarked',1,3,2)
 		data = {'pclass': pclass, 'sex': sex,  'age': age, 'sibsp': sibsp,'parch':parch,'fare':fare,'embarked':embarked}
 		features = pd.DataFrame(data, index=[0])
