@@ -3,6 +3,9 @@ import pandas as pd
 import numpy as np
 import pickle
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 
 st.header('Welcome to our Titanic Streamlit Web App')
 st.subheader('''
