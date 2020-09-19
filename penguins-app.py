@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
@@ -24,11 +22,6 @@ if options == 'PowerBI':
 else:
 	df = pd.read_csv('titanic.csv')
 	st.write(df.head())
-	df = df.drop(['Name','PassengerId','Ticket','Cabin'],axis=1)
-	labelencoder = LabelEncoder()
-	df['Pclass'] = labelencoder.fit_transform(df['Pclass'])
-	df['Survived'] = labelencoder.fit_transform(df['Survived'])
-	df['Embarked'] = labelencoder.fit_transform(df['Embarked'])
-	df['Sex'] = labelencoder.fit_transform(df['Sex'])
+	
 	
 
