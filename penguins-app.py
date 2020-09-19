@@ -34,13 +34,13 @@ else:
 		data = {'pclass': pclass, 'sex': sex,  'age': age, 'sibsp': sibsp,'parch':parch,'fare':fare,'embarked':embarked}
 		features = pd.DataFrame(data, index=[0])
 		return features
-
+	st.sidebar.subheader('User Input parameters')
 	df1 = user_input_features()
 
 	# print info and description
 	st.write(df.info())
 	st.write(df.describe())
-	st.sidebar.subheader('User Input parameters')
+	
 	st.subheader('User input parameters')
 	st.write(df1)
 	y = df['Survived']
