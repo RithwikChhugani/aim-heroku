@@ -21,6 +21,7 @@ if options == 'PowerBI':
 
 else:
 	df = pd.read_csv('titanic.csv')
+	df = df.dropna()
 	st.write(df.head())
 	
 	
