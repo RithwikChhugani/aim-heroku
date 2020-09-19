@@ -40,9 +40,27 @@ else:
 	# print info and description
 	st.write(df.info())
 	st.write(df.describe())
-	st.subheader('User Input parameters')
+	st.sidebar.subheader('User Input parameters')
+	st.subheader('User input parameters')
 	st.write(df1)
+	y = df['Survived']
+	X = df.iloc[:,1:]
+	# split into train test sets
+	X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33)
 	
+
+	#loading model
+	load_clf = pickle.load(open('titanic_clf.pkl','rb'))
+
+	# making model and fitting
+	# log_reg = LogisticRegression()
+	# log_reg.fit(X_train,y_train)
+	
+	prediction = load_clf.predict(df1)
+	prediction_proba = load_clf.predict_proba(df1)
+
+	st.subheader('Prediction Probability')
+	st.write(prediction_proba)
 	
 	
 
