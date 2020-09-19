@@ -26,11 +26,11 @@ else:
 	def user_input_features():
 		pclass = st.sidebar.selectbox('Pclass', [0,1])
 		sex = st.sidebar.selectbox('Sex', [0,1])
-		age = st.sidebar.slider('Age', 0.42, 31.00, 80.00)
-		sibsp = st.sidebar.slider('SibSp', 0, 2, 5)
-		parch = st.sidebar.slider('Parch',0,2,6)
+		age = st.sidebar.slider('Age', 0.42, 80.00,31.0)
+		sibsp = st.sidebar.slider('SibSp', 0, 5, 2)
+		parch = st.sidebar.slider('Parch',0,6,2)
 		fare = st.sidebar.slider('Fare',0.0,2.0,513.0)
-		embarked = st.sidebar.slider('Embarked',0,2,3)
+		embarked = st.sidebar.slider('Embarked',1,3,2)
 		data = {'pclass': pclass, 'sex': sex,  'age': age, 'sibsp': sibsp,'parch':parch,'fare':fare,'embarked':embarked}
 		features = pd.DataFrame(data, index=[0])
 		return features
