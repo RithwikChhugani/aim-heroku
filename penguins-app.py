@@ -23,6 +23,26 @@ else:
 	df = pd.read_csv('titanic.csv')
 	df = df.dropna()
 	st.write(df.head())
+	def user_input_features():
+		pclass = st.sidebar.selectbox('Pclass', [0,1])
+		sex = st.sidebar.selectbox('Sex', [0,1])
+		age = st.sidebar.slider('Age', 0.42, 31.00, 80.00)
+		sibsp = st.sidebar.slider('SibSp', 0, 2, 5)
+		parch = st.sidebar.slider('Parch',0,2,6)
+		fare = st.sidebar.slider('Fare',0.0,2.0,513.0)
+		embarked = st.sidebar.slider('Embarked',0,2,3)
+		data = {'pclass': pclass, 'sex': sex,  'age': age, 'sibsp': sibsp,'parch':parch,'fare':fare,'embarked':embarked}
+		features = pd.DataFrame(data, index=[0])
+		return features
+
+	df1 = user_input_features()
+
+	# print info and description
+	st.write(df.info())
+	st.write(df.describe())
+	st.subheader('User Input parameters')
+	st.write(df1)
+	
 	
 	
 
